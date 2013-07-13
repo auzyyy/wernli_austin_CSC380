@@ -7,11 +7,26 @@
  */
 public class MathLogic {
 
-    public int add(int a, int b){
-        return a + b;
+    public int add(Object[] args){
+        Integer[] intArgs = (Integer[]) args;
+        Integer answer = 0;
+        for (Integer number :  intArgs) {
+            if(number != null){
+                answer += number;
+            }
+        }
+        return answer;
     }
 
-    public int subtract(int a, int b){
-        return a - b;
+    public int subtract(Object[] args){
+        Integer[] intArgs = (Integer[]) args;
+        Integer answer = 0;
+        for (Integer number :  intArgs) {
+            if(number != null){
+                answer -= number;
+            }
+        }
+        return answer;
     }
+
 }

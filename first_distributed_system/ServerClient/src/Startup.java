@@ -15,19 +15,63 @@ public class Startup {
     String portNum;
     String host;
     Scanner scan = new Scanner(System.in);
+    Socket socket = null;
 
     public Startup(){
         portNum = JOptionPane.showInputDialog("Which port would you like to connect to?");
         host = JOptionPane.showInputDialog("Which host would you like to connect to?");
-
         try {
-            Socket socket = new Socket(host,Integer.parseInt(portNum));
+            socket = new Socket(host,Integer.parseInt(portNum));
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
 
+        getMethodsFromServer();
+        taskChooser();
+    }
+
+    private void getMethodsFromServer(){
+        try{
+        OutputStream os = socket.getOutputStream();
+        OutputStreamWriter osw = new OutputStreamWriter(os);
+        BufferedWriter bw = new BufferedWriter(osw);
+
+        bw.write("getMethods");
+        bw.flush();
+        socket.shutdownOutput();
+
+        //Get the return message from the server
+        InputStream is = socket.getInputStream();
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+            Scanner buffScanner = new Scanner(br);
+            String message = "";
+            while(buffScanner.hasNextLine()){
+                message += buffScanner.nextLine() + "\n";
+            }
+        System.out.println("Available methods:\n" + message);
+        }
+        catch(Exception e){
+            System.out.println("error has occurred");
+        }
+    }
+
+    private void taskChooser(){
+        String chosenOption = "";
+        System.out.println("Please type one of the options below (e.g. \"add\")");
+        chosenOption = scan.nextLine();
+
+        String message = "";
+        System.out.println("Please enter the data type followed by the numbers you would like to " + chosenOption + " with a space between each number (e.g. java.lang.Integer 3 4 5)");
+        message += chosenOption + " " + scan.nextLine();
+
+        try{
+            socket = new Socket(host,Integer.parseInt(portNum));
             OutputStream os = socket.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
 
-            bw.write(userInput());
+            bw.write(message);
             bw.flush();
             socket.shutdownOutput();
 
@@ -35,40 +79,12 @@ public class Startup {
             InputStream is = socket.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr);
-            String message = br.readLine();
-            System.out.println("Answer is " + message);
-
-            socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            String messageFromServer = br.readLine();
+            System.out.println("Response: " + messageFromServer);
         }
-    }
-
-    public String userInput(){
-        String message = "";
-        System.out.println("Please select an option \n 1. add \n 2. subtract");
-        String choice = scan.nextLine();
-        if(choice.equals("1")){
-            message += "add " + add();
+        catch(Exception e){
+            e.printStackTrace();
         }
-        else if(choice.equals("2")){
-            message += "sub " + subtract();
-        }
-        else{
-            message = userInput();
-        }
-
-        return message;
-    }
-
-    public String add(){
-        System.out.println("Enter the numbers you wish to add separated by a space");
-        return scan.nextLine();
-    }
-
-    public String subtract(){
-        System.out.println("Enter the numbers you wish to subtract separated by a space");
-        return scan.nextLine();
     }
 
     public static void main(String[]args){
