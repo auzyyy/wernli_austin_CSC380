@@ -9,28 +9,28 @@ public class MathLogic {
 
     static MathLogic mathLogic = null;
 
-    public int add(Object[] args){
+    public int add(Object[] args) {
         Integer answer = 0;
         for (Object number : args) {
-            if(number != null){
+            if (number != null) {
                 answer += (Integer) number;
             }
         }
         return answer;
     }
 
-    public int subtract(Object[] args){
+    public int subtract(Object[] args) {
         Integer answer = 0;
-        for (Object number :  args) {
-            if(number != null){
+        for (Object number : args) {
+            if (number != null) {
                 answer -= (Integer) number;
             }
         }
         return answer;
     }
 
-    public static MathLogic getInstance(){
-        if(mathLogic == null)
+    public static MathLogic getInstance() {
+        if (mathLogic == null)
             mathLogic = new MathLogic();
         return mathLogic;
     }
