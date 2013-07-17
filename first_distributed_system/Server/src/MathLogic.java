@@ -7,26 +7,32 @@
  */
 public class MathLogic {
 
+    static MathLogic mathLogic = null;
+
     public int add(Object[] args){
-        Integer[] intArgs = (Integer[]) args;
         Integer answer = 0;
-        for (Integer number :  intArgs) {
+        for (Object number : args) {
             if(number != null){
-                answer += number;
+                answer += (Integer) number;
             }
         }
         return answer;
     }
 
     public int subtract(Object[] args){
-        Integer[] intArgs = (Integer[]) args;
         Integer answer = 0;
-        for (Integer number :  intArgs) {
+        for (Object number :  args) {
             if(number != null){
-                answer -= number;
+                answer -= (Integer) number;
             }
         }
         return answer;
+    }
+
+    public static MathLogic getInstance(){
+        if(mathLogic == null)
+            mathLogic = new MathLogic();
+        return mathLogic;
     }
 
 }
