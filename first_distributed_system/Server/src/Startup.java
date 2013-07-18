@@ -43,20 +43,28 @@ public class Startup {
     public class ClientThread implements Runnable {
 
         Socket socket;
+        OutputStream outStream;
+        PrintWriter pWriter;
+        BufferedReader br;
+        Class c;
 
         public ClientThread(Socket socket) {
-            this.socket = socket;
+            try {
+                this.socket = socket;
+                startConnection();
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
         }
 
-        public String getMethodsFromClass(String classString) {
+        private String getMethodsFromClass(String classString) {
             try {
-                File root = new File(".");
-                URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{root.toURI().toURL()});
-                Class<?> c = Class.forName(classString, true, classLoader);
+                Class<?> c = getClassFromString(classString);
+
                 String message = "";
                 Method[] methods = c.getDeclaredMethods();
                 for (int i = 0; i < methods.length; i++) {
-                    message += methods[i] + "\n";
+                    message += methods[i] + "|";
                 }
 
                 return message;
@@ -66,82 +74,12 @@ public class Startup {
             return null;
         }
 
-        public Class getClass(String classString) {
-            Class o;
-            if (classString.equals("int")) o = Integer.class;
-            else if (classString.equals("short")) o = Short.class;
-            else if (classString.equals("byte")) o = Byte.class;
-            else if (classString.equals("long")) o = Long.class;
-            else if (classString.equals("float")) o = Float.class;
-            else if (classString.equals("double")) o = Double.class;
-            else if (classString.equals("boolean")) o = Boolean.class;
-            else if (classString.equals("char")) o = char.class;
-            else o = String.class;
-
-            return o;
-        }
-
-        public Object[] parseInteger(Object[] args) {
-            Object[] temp = new Object[args.length];
-            for (int i = 0; i < args.length - 1; i++) {
-                temp[i] = Integer.parseInt((String) args[i]);
-            }
-            return temp;
-        }
-
-        public Object[] parseShort(Object[] args) {
-            Object[] temp = new Object[args.length];
-            for (int i = 0; i < args.length - 1; i++) {
-                temp[i] = Short.parseShort((String) args[i]);
-            }
-            return args;
-        }
-
-        public Object[] parseByte(Object[] args) {
-            Object[] temp = new Object[args.length];
-            for (int i = 0; i < args.length - 1; i++) {
-                temp[i] = Byte.parseByte((String) args[i]);
-            }
-            return args;
-        }
-
-        public Object[] parseLong(Object[] args) {
-            Object[] temp = new Object[args.length];
-            for (int i = 0; i < args.length - 1; i++) {
-                temp[i] = Long.parseLong((String) args[i]);
-            }
-            return args;
-        }
-
-        public Object[] parseFloat(Object[] args) {
-            Object[] temp = new Object[args.length];
-            for (int i = 0; i < args.length - 1; i++) {
-                temp[i] = Float.parseFloat((String) args[i]);
-            }
-            return args;
-        }
-
-        public Object[] parseBoolean(Object[] args) {
-            Object[] temp = new Object[args.length];
-            for (int i = 0; i < args.length - 1; i++) {
-                temp[i] = Boolean.parseBoolean((String) args[i]);
-            }
-            return args;
-        }
-
-        public Object[] parseDouble(Object[] args) {
-            Object[] temp = new Object[args.length];
-            for (int i = 0; i < args.length - 1; i++) {
-                temp[i] = Double.parseDouble((String) args[i]);
-            }
-            return args;
-        }
-
-        public String getClassFromClient() {
+        private String getClassesFromClient() {
             try {
                 Scanner classScan = new Scanner(new File("Server\\UseableClasses.txt"));
                 String numClasses = classScan.nextLine();
                 String[] classes = new String[Integer.parseInt(numClasses)];
+
                 int i = 0;
                 while (classScan.hasNextLine()) {
                     classes[i] = classScan.nextLine();
@@ -152,9 +90,7 @@ public class Startup {
                     classesString += aClass + " ";
                 }
 
-
                 return classesString;
-
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -173,83 +109,114 @@ public class Startup {
             return null;
         }
 
-        public String executeMethodFromClient(String clientMessage, String classString) {
+        private String executeMethodFromClient(String methodString, Object[] params) {
             String message = "";
-            String[] messageArray = clientMessage.split(" ");
-            Object[] params = new Object[messageArray.length - 2];
-            for (int i = 3; i < messageArray.length; i++) {
-                params[i - 3] = messageArray[i];
-            }
-            try {
-                Class<?> classToUse = getClassFromString(classString);
-
-                Class<?> c = getClass(messageArray[2]);
-                Object o = Array.newInstance(c, params.length);
-                Object[] obArray = (Object[]) o;
-
-                Method parseMethod = null;
-                Method[] classMethods = this.getClass().getDeclaredMethods();
-                String className = c.getSimpleName();
-                for (Method classMethod : classMethods) {
-                    if (classMethod.getName().contains("parse" + className)) {
-                        parseMethod = classMethod;
-                        break;
-                    }
-                }
-
-                obArray = (Object[]) parseMethod.invoke(this, new Object[]{params});
-
-                Method m = null;
-                for (Method method : classToUse.getDeclaredMethods()) {
-                    if (method.getName().equals(messageArray[0])) {
-                        m = method;
-                    }
-                }
-
-                Object[] obParamArray = new Object[]{obArray};
-
-                message += m.invoke(classToUse.newInstance(), obParamArray);
-
-                return message;
-
+            try{
+                Method m = getMethodFromString(c, methodString);
+                Object[] o = new Object[]{params};
+                message = m.invoke(c.newInstance(), o) + " ";
             } catch (Exception e) {
                 e.printStackTrace();
             }
             return message;
         }
 
-        @Override
-        public void run() {
-            try {
-                System.out.println("user connected");
-                //Get the return message from the server
-                InputStream is = socket.getInputStream();
-                InputStreamReader isr = new InputStreamReader(is);
-                BufferedReader br = new BufferedReader(isr);
-                String clientMessage = br.readLine();
+        private Method getMethodFromString(Class c, String methodString) {
 
-                String[] messageArray = clientMessage.split(" ");
-                String message = messageArray[0];
-                System.out.println(message);
-                if (message.equals("getMethods")) {
-                    message = getMethodsFromClass(messageArray[1]);
-                } else if (message.equals("getClasses")) {
-                    message = getClassFromClient();
-                } else {
-                    message = executeMethodFromClient(clientMessage, messageArray[1]);
+            Method m = null;
+            for (Method method : c.getDeclaredMethods()) {
+                if (method.getName().equals(methodString)) {
+                    m = method;
+                }
+            }
+
+            return m;
+        }
+
+        private Object[] getParamsFromString(String[] dataTypeArray) {
+            try {
+                Object[] objects = new Integer[dataTypeArray.length + 1];
+                for (int i = 0; i < dataTypeArray.length; i++) {
+                    Class<?> co = Integer.class;
+
+                    objects[i] = 3;
                 }
 
-                OutputStream os = socket.getOutputStream();
-                OutputStreamWriter osw = new OutputStreamWriter(os);
-                BufferedWriter bw = new BufferedWriter(osw);
+                return objects;
 
-                bw.write(message);
-                bw.flush();
-                socket.shutdownOutput();
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
 
-                socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        private Object[] getParamsFromClient(String clientMessage) {
+            //client message comes in such as:
+            //chooseParams add MyParam|java.lang.Integer|3
+            String[] clientMessageArray = clientMessage.split("\\|");
+            String messageInfo = clientMessageArray[0];
+            String dataTypes = clientMessageArray[1];
+            String params = clientMessageArray[2];
+
+            String[] messageInfoArray = messageInfo.split(" ");
+            String methodString = messageInfoArray[1];
+            String classString = messageInfoArray[2];
+
+            c = getClassFromString(classString);
+
+            String[] dataTypeArray = dataTypes.split(" ");
+
+            Method m = getMethodFromString(c, methodString);
+            Object[] paramsObjects = getParamsFromString(dataTypeArray);
+            paramsObjects[0] = Integer.parseInt(params.split(" ")[0]);
+
+            return paramsObjects;
+        }
+
+        private void startConnection() throws IOException {
+            outStream = socket.getOutputStream();
+            br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            pWriter = new PrintWriter(outStream, true);
+        }
+
+        private String readString() throws IOException {
+            return br.readLine();
+        }
+
+        private void sendString(String args){
+            pWriter.println(args);
+            pWriter.flush();
+        }
+
+        @Override
+        public void run() {
+            System.out.println("user connected");
+            while(!socket.isClosed()){
+                try {
+                    //Get the return message from the server
+                    String clientMessage = readString();
+
+                    String[] messageArray = clientMessage.split(" ");
+                    String message = messageArray[0];
+                    System.out.println(message);
+                    if (message.equals("getMethods")) {
+                        message = getMethodsFromClass(messageArray[1]);
+                    } else if (message.equals("getClasses")) {
+                        message = getClassesFromClient();
+                    } else if(message.equals("chosenClass")){
+                        c = getClassFromString(messageArray[1]);
+                    } else if (message.equals("chooseParams")) {
+                        message = executeMethodFromClient(messageArray[1], getParamsFromClient(clientMessage));
+                        sendString(message);
+                        socket.close();
+                    } else if (message.equals("close")){
+                        socket.close();
+                    }
+
+                    sendString(message);
+                } catch (IOException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
             }
         }
     }

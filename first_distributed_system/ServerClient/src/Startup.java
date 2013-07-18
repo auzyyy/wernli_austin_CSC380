@@ -16,7 +16,10 @@ public class Startup {
     String host;
     Scanner scan = new Scanner(System.in);
     Socket socket = null;
-    String classString = "";
+    OutputStream outStream;
+    PrintWriter pWriter;
+    BufferedReader br;
+    String classString;
 
     public Startup(){
         portNum = JOptionPane.showInputDialog("Which port would you like to connect to?");
@@ -24,29 +27,39 @@ public class Startup {
         try {
             socket = new Socket(host,Integer.parseInt(portNum));
         } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
 
-        classString = getClassesFromServer();
-
-        getMethodsFromServer();
-        taskChooser();
+        try {
+            startConnection();
+            getClassesFromServer();
+            getMethodsFromServer();
+            taskChooser();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private String getClassesFromServer(){
+    private String readString() throws IOException {
+        return br.readLine();
+    }
+
+    private void sendString(String args){
+        pWriter.println(args);
+        pWriter.flush();
+    }
+
+    private void startConnection() throws IOException {
+        outStream = socket.getOutputStream();
+        br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        pWriter = new PrintWriter(outStream, true);
+    }
+
+    private void getClassesFromServer(){
         try{
-            OutputStream os = socket.getOutputStream();
-            OutputStreamWriter osw = new OutputStreamWriter(os);
-            BufferedWriter bw = new BufferedWriter(osw);
+            sendString("getClasses");
 
-            bw.write("getClasses");
-            bw.flush();
-            socket.shutdownOutput();
-
-            InputStream is = socket.getInputStream();
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(isr);
-            String serverMessage = br.readLine();
+            String serverMessage = readString();
             String[] messageArray = serverMessage.split(" ");
             System.out.println("Available Classes");
             for (String s : messageArray) {
@@ -54,35 +67,25 @@ public class Startup {
             }
             System.out.println("\n Please choose one of the following");
             String message = scan.nextLine();
-            return message;
+            classString = message;
         }
         catch(Exception e){
-
+             e.printStackTrace();
         }
-        return null;
     }
 
     private void getMethodsFromServer(){
         try{
-            socket = new Socket(host,Integer.parseInt(portNum));
-        OutputStream os = socket.getOutputStream();
-        OutputStreamWriter osw = new OutputStreamWriter(os);
-        BufferedWriter bw = new BufferedWriter(osw);
+            sendString("getMethods " + classString);
 
-        bw.write("getMethods " + classString);
-        bw.flush();
-        socket.shutdownOutput();
-
-        //Get the return message from the server
-        InputStream is = socket.getInputStream();
-        InputStreamReader isr = new InputStreamReader(is);
-        BufferedReader br = new BufferedReader(isr);
-            Scanner buffScanner = new Scanner(br);
-            String message = "";
-            while(buffScanner.hasNextLine()){
-                message += buffScanner.nextLine() + "\n";
+            //Get the return message from the server
+            String message = readString();
+            String[] messageArray = message.split("\\|");
+            String methodString = "";
+            for (String s : messageArray) {
+                methodString += s + "\n";
             }
-        System.out.println("Available methods:\n" + message);
+            System.out.println("Available methods:\n" + methodString);
         }
         catch(Exception e){
             e.printStackTrace();
@@ -95,24 +98,17 @@ public class Startup {
         chosenOption = scan.nextLine();
 
         String message = "";
-        System.out.println("Please enter the data type followed by the numbers you would like to " + chosenOption + " with a space between each number (e.g. int 3 4 5)");
-        message += chosenOption + " " + classString + " " + scan.nextLine();
+//        System.out.println("Please enter the data type followed by the numbers you would like to " + chosenOption + " with a space between each number (e.g. int 3 4 5)");
+        System.out.println("Please enter the Class name with a | after it, followed by the \n" +
+                "data type(s) for the constructor you will use \n" +
+                "following a | then the parameters with a space \n" +
+                "between each type(e.g. \"MyParam|java.lang.Integer|3\")");
+        message += "chooseParams " + chosenOption + " " + scan.nextLine();
 
         try{
-            socket = new Socket(host,Integer.parseInt(portNum));
-            OutputStream os = socket.getOutputStream();
-            OutputStreamWriter osw = new OutputStreamWriter(os);
-            BufferedWriter bw = new BufferedWriter(osw);
+            sendString(message);
 
-            bw.write(message);
-            bw.flush();
-            socket.shutdownOutput();
-
-            //Get the return message from the server
-            InputStream is = socket.getInputStream();
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(isr);
-            String messageFromServer = br.readLine();
+            String messageFromServer = readString();
             System.out.println("Response: " + messageFromServer);
         }
         catch(Exception e){
