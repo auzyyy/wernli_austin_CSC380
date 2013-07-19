@@ -22,10 +22,11 @@ public class Startup {
     String classString;
 
     public Startup(){
-        portNum = JOptionPane.showInputDialog("Which port would you like to connect to?");
-        host = JOptionPane.showInputDialog("Which host would you like to connect to?");
+//        portNum = JOptionPane.showInputDialog("Which port would you like to connect to?");
+//        host = JOptionPane.showInputDialog("Which host would you like to connect to?");
         try {
-            socket = new Socket(host,Integer.parseInt(portNum));
+//            socket = new Socket(host,Integer.parseInt(portNum));
+            socket = new Socket("localhost",2222);
         } catch (IOException e) {
             e.printStackTrace();
         }

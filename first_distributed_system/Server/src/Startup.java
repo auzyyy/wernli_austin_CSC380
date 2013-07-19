@@ -20,10 +20,11 @@ public class Startup {
     String portNum;
 
     public Startup() {
-        portNum = JOptionPane.showInputDialog("which port would you like to listen on?");
+//        portNum = JOptionPane.showInputDialog("which port would you like to listen on?");
 
         try {
-            ServerSocket serverSocket = new ServerSocket(Integer.parseInt(portNum));
+//            ServerSocket serverSocket = new ServerSocket(Integer.parseInt(portNum));
+            ServerSocket serverSocket = new ServerSocket(2222);
 
             while (true) {
                 Thread thread = new Thread(new ClientThread(serverSocket.accept()));
