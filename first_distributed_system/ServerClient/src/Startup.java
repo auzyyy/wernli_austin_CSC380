@@ -75,6 +75,8 @@ public class Startup {
         }
     }
 
+    private String[] methods;
+
     private void getMethodsFromServer(){
         try{
             sendString("getMethods " + classString);
@@ -83,8 +85,12 @@ public class Startup {
             String message = readString();
             String[] messageArray = message.split("\\|");
             String methodString = "";
+            methods = new String[messageArray.length];
+            int i = 1;
             for (String s : messageArray) {
-                methodString += s + "\n";
+                methods[i-1] = s;
+                methodString += i + ". " + s + "\n";
+                i ++;
             }
             System.out.println("Available methods:\n" + methodString);
         }
@@ -95,11 +101,12 @@ public class Startup {
 
     private void taskChooser(){
         String chosenOption = "";
-        System.out.println("Please type one of the options above (e.g. \"add\")");
+        System.out.println("Please select one of the options above(e.g. \"1 for first method\")");
         chosenOption = scan.nextLine();
+        String chosenMethod = methods[Integer.parseInt(chosenOption) - 1];
 
+        System.out.println(chosenMethod);
         String message = "";
-//        System.out.println("Please enter the data type followed by the numbers you would like to " + chosenOption + " with a space between each number (e.g. int 3 4 5)");
         System.out.println("Please enter the Class name with a | after it, followed by the \n" +
                 "data type(s) for the constructor you will use \n" +
                 "following a | then the parameters with a space \n" +

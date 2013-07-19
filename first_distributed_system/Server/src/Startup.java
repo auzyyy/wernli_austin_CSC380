@@ -2,10 +2,7 @@ import javax.swing.*;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.URL;
-import java.net.URLClassLoader;
+import java.net.*;
 import java.util.Scanner;
 
 /**
@@ -77,7 +74,8 @@ public class Startup {
 
         private String getClassesFromClient() {
             try {
-                Scanner classScan = new Scanner(this.getClass().getClassLoader().getResourceAsStream("UseableClasses.txt"));
+                Scanner classScan = new Scanner(this.getClass().getClassLoader().
+                        getResourceAsStream("UseableClasses.txt"));
                 String numClasses = classScan.nextLine();
                 String[] classes = new String[Integer.parseInt(numClasses)];
 
@@ -209,13 +207,17 @@ public class Startup {
                     } else if (message.equals("chooseParams")) {
                         message = executeMethodFromClient(messageArray[1], getParamsFromClient(clientMessage));
                         sendString(message);
-                        socket.close();
                     } else if (message.equals("close")){
                         socket.close();
                     }
 
                     sendString(message);
-                } catch (IOException e) {
+                }   catch (IOException e) {
+                    try {
+                        socket.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    }
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
             }
