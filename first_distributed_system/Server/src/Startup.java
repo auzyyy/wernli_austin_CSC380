@@ -77,7 +77,7 @@ public class Startup {
 
         private String getClassesFromClient() {
             try {
-                Scanner classScan = new Scanner(new File("Server\\UseableClasses.txt"));
+                Scanner classScan = new Scanner(this.getClass().getClassLoader().getResourceAsStream("UseableClasses.txt"));
                 String numClasses = classScan.nextLine();
                 String[] classes = new String[Integer.parseInt(numClasses)];
 
