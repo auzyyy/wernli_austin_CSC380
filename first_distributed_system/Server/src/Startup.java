@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.io.*;
 import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.*;
 import java.util.Scanner;
@@ -76,17 +78,11 @@ public class Startup {
             try {
                 Scanner classScan = new Scanner(this.getClass().getClassLoader().
                         getResourceAsStream("UseableClasses.txt"));
-                String numClasses = classScan.nextLine();
-                String[] classes = new String[Integer.parseInt(numClasses)];
-
-                int i = 0;
-                while (classScan.hasNextLine()) {
-                    classes[i] = classScan.nextLine();
-                }
 
                 String classesString = "";
-                for (String aClass : classes) {
-                    classesString += aClass + " ";
+                while (classScan.hasNextLine()) {
+                    String classString = classScan.nextLine();
+                    classesString += classString + " ";
                 }
 
                 return classesString;
@@ -187,6 +183,81 @@ public class Startup {
             pWriter.flush();
         }
 
+        private String getMethodFromClientMessage(String[] clientMessage){
+            String message = "";
+
+            for(int i = 1; i < clientMessage.length; i ++){
+                message += clientMessage[i] + " ";
+            }
+
+            return message;
+        }
+
+        private boolean isPrimitive(String type){
+            boolean isTrue = false;
+            if(type.equalsIgnoreCase("long") || type.equalsIgnoreCase("int")
+                    || type.equalsIgnoreCase("double") || type.equalsIgnoreCase("string")){
+                isTrue = true;
+            }
+
+            return isTrue;
+        }
+
+
+
+        private void handleMethodFromClient(String[] clientMessage) throws IOException, IllegalAccessException, InvocationTargetException, InstantiationException {
+            String methodString = getMethodFromClientMessage(clientMessage);
+            String[] methodArray = methodString.split(" ");
+
+            String returnType = methodArray[1];
+            String[] endOfMethodArray = methodArray[2].split("\\(");
+            String methodName = endOfMethodArray[0];
+            String paramString = endOfMethodArray[1].replace(')',' ').trim();
+            String className = methodName.split("\\.")[0];
+            Class mainClass = getClassFromString(className);
+
+//            String[] paramStringArray = paramString.split(",");
+//            Class[] paramClasses = new Class[paramStringArray.length];
+//            int i = 0;
+//            for (String s : paramStringArray) {
+//                if(isPrimitive(s)){
+//                    paramClasses[i] = getClassFromString(s + ".class");
+//                }
+//                else{
+//                    paramClasses[i] = getClassFromString(s);
+//                }
+//                i ++;
+//            }
+
+            Class c = getClassFromString(paramString);
+            Constructor[] constructors = c.getDeclaredConstructors();
+            Constructor constructor = constructors[0];
+            sendString(constructor.toString());
+            Class paramClass = constructor.getParameterTypes()[0];
+
+            String params = readString();
+
+            Object o = null;
+
+            if(paramClass.getName().equalsIgnoreCase("int")){
+                 o = Integer.parseInt(params);
+            }else{
+                o = params;
+            }
+
+            Object newClass = constructor.newInstance(o);
+
+            try {
+                Method m = mainClass.getMethod(methodName.split("\\.")[1], c);
+                Object returnedOb = m.invoke(mainClass.newInstance(), new Object[]{newClass});
+                sendString(returnedOb.toString());
+
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+
+        }
+
         @Override
         public void run() {
             System.out.println("user connected");
@@ -207,6 +278,16 @@ public class Startup {
                     } else if (message.equals("chooseParams")) {
                         message = executeMethodFromClient(messageArray[1], getParamsFromClient(clientMessage));
                         sendString(message);
+                    } else if(message.equals("choseMethod")){
+                        try {
+                            handleMethodFromClient(messageArray);
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        } catch (InvocationTargetException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        } catch (InstantiationException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        }
                     } else if (message.equals("close")){
                         socket.close();
                     }

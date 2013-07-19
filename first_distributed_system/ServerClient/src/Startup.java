@@ -99,29 +99,21 @@ public class Startup {
         }
     }
 
-    private void taskChooser(){
+    private void taskChooser() throws IOException {
         String chosenOption = "";
         System.out.println("Please select one of the options above(e.g. \"1 for first method\")");
         chosenOption = scan.nextLine();
         String chosenMethod = methods[Integer.parseInt(chosenOption) - 1];
 
-        System.out.println(chosenMethod);
-        String message = "";
-        System.out.println("Please enter the Class name with a | after it, followed by the \n" +
-                "data type(s) for the constructor you will use \n" +
-                "following a | then the parameters with a space \n" +
-                "between each type(e.g. \"MyParam|java.lang.Integer|3\")");
-        message += "chooseParams " + chosenOption + " " + scan.nextLine();
+        sendString("choseMethod " + chosenMethod);
 
-        try{
-            sendString(message);
+        String methodParam = readString();
 
-            String messageFromServer = readString();
-            System.out.println("Response: " + messageFromServer);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        System.out.println("Please enter a comma delimited list of params for \"" + methodParam + "\"");
+        sendString(scan.nextLine());
+
+        String important = readString();
+        System.out.println("response: " + important);
     }
 
     private void chooseObject(){
