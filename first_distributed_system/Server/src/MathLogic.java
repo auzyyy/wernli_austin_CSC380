@@ -19,6 +19,10 @@ public class MathLogic {
         return answer;
     }
 
+    public int add(int a, int b){
+        return a+b;
+    }
+
     public int subtract(Object[] args) {
         Integer answer = 0;
         for (Object number : args) {
