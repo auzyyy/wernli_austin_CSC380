@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<restaurants>
+    <restaurant name="carl's junior">
+        <menuItems>
+            <menuItem name = "burger 1" />
+            <menuItem name = "burger 2" />
+            <menuItem name = "burger 3" />
+        </menuItems>
+    </restaurant>
+    <restaurant name="wtf place">
+        <menuItems>
+            <menuItem name = "shit1" />
+            <menuItem name = "shit2" />
+            <menuItem name = "shit3" />
+        </menuItems>
+    </restaurant>
+    <restaurant name="lol place">
+        <menuItems>
+            <menuItem name = "rawr1" />
+            <menuItem name = "rawr2" />
+            <menuItem name = "rawr3" />
+        </menuItems>
+    </restaurant>
+</restaurants>

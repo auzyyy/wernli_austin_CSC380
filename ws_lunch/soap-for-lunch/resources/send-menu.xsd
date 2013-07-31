@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://localhost:8080/restaurants" xmlns:r="http://localhost:8080/restaurants" xmlns:soap="http://www.w3.org/2001/12/soap-envelope">
+    <xs:import namespace="http://www.w3.org/2001/12/soap-envelope" schemaLocation="restaurant-menu-soapp-response.xsd"/>
+    <xs:element name="getMenuItems">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="r:menuItems"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="menuItems">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="r:name"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="name" type="xs:string"/>
+</xs:schema>

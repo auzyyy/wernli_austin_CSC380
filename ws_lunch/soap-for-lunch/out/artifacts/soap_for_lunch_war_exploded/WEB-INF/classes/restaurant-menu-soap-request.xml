@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<soap:Envelope
+        xmlns:soap="http://www.w3.org/2001/12/soap-envelope"
+        soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
+    <soap:Body xmlns:r="http://localhost:8080/restaurants">
+        <r:getRestaurantMenu>
+            <r:restaurantName>carl’s jr</r:restaurantName>
+        </r:getRestaurantMenu>
+    </soap:Body>
+</soap:Envelope>

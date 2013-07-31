@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<soap:Envelope
+        xmlns:soap="http://www.w3.org/2001/12/soap-envelope"
+        soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
+    <soap:Body xmlns:r="http://localhost:8080/restaurants">
+        <r:getMenuItems>
+            <r:menuItems>
+                <r:name>Item 1</r:name>
+            </r:menuItems>
+            <r:menuItems>
+                <r:name>Item 2</r:name>
+            </r:menuItems>
+            <r:menuItems>
+                <r:name>Item 3</r:name>
+            </r:menuItems>
+        </r:getMenuItems>
+    </soap:Body>
+</soap:Envelope>

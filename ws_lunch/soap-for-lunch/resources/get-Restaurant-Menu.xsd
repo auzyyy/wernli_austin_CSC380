@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://localhost:8080/restaurants" xmlns:r="http://localhost:8080/restaurants" xmlns:soap="http://www.w3.org/2001/12/soap-envelope">
+    <xs:import namespace="http://www.w3.org/2001/12/soap-envelope" schemaLocation="restaurant-menu-soap-request.xsd"/>
+    <xs:element name="getRestaurantMenu">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="r:restaurantName"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="restaurantName" type="xs:string"/>
+</xs:schema>
