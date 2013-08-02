@@ -53,7 +53,7 @@ public class SoapSocket extends javax.servlet.http.HttpServlet {
     }
 
     private void sendRestaurantsMenu(javax.servlet.http.HttpServletResponse response, Envelope envelope) throws IOException {
-        Scanner scan = new Scanner(this.getClass().getClassLoader().getResourceAsStream("restaurant-menu-soapp-response.xsd"));
+        Scanner scan = new Scanner(this.getClass().getClassLoader().getResourceAsStream("restaurant-menu-soapp-response.xml"));
         String message = "";
         while (scan.hasNextLine()) {
             message += scan.nextLine();
