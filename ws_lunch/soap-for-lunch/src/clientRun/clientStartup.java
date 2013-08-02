@@ -51,13 +51,20 @@ public class clientStartup {
             generated.MenuRequest.GetRestaurantMenu getMenu = new generated.MenuRequest.GetRestaurantMenu();
             getMenu.setRestaurantName(restaurant);
             body.setGetRestaurantMenu(getMenu);
-            JAXBContext marshalContext = JAXBContext.newInstance(generated.MenuRequest.ObjectFactory.class);
+            envelope.setBody(body);
+            JAXBContext marshalContext = JAXBContext.newInstance(generated.MenuRequest.Envelope.class);
             Marshaller marshaller = marshalContext.createMarshaller();
+
+            StringWriter stringWriter = new StringWriter();
 
             JAXBContext unmarshallerContext = JAXBContext.newInstance(generated.MenuResponse.ObjectFactory.class);
             Unmarshaller unmarshaller = unmarshallerContext.createUnmarshaller();
-            marshaller.marshal(envelope, System.out);
-//            generated.MenuResponse.Envelope responseEnvelope = unmarshaller.unmarshal(sendRequest(marshaller.marshal(envelope, );))
+            marshaller.marshal(envelope, stringWriter);
+
+            System.out.println(stringWriter);
+
+            Object o = unmarshaller.unmarshal(sendRequest(stringWriter.toString()));
+            System.out.println(o.getClass());
 
 
         } catch (JAXBException e) {
@@ -68,16 +75,15 @@ public class clientStartup {
     public String getRestaurants() {
         String restaurantName = "";
         try {
-            InputStream responseStream = sendGetRequest("restaurant-restaurants-soap-request.xml");
+            StringReader responseStream = sendGetRequest("restaurant-restaurants-soap-request.xml");
             JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
             Envelope envelope = (Envelope) unmarshaller.unmarshal(responseStream);
             generated.RestaurantsResponse.Body body = envelope.getBody();
-            RestaurantResponse restaurants = body.getRestaurantResponse();
 
             List<Restaurant> restaurantList = body.getRestaurantResponse().getRestaurant();
-            System.out.println("please choose a restaurnt from the list below");
+            System.out.println("please choose a restaurant from the list below");
             int i = 1;
             for (Restaurant restaurant : restaurantList) {
                 System.out.println(i + ". " + restaurant.getName());
@@ -87,21 +93,21 @@ public class clientStartup {
             Restaurant chosenRestaurant = restaurantList.get(choice - 1);
             restaurantName = chosenRestaurant.getName();
 
-
+            responseStream.close();
         } catch (JAXBException e) {
             e.printStackTrace();
         }
         return restaurantName;
     }
 
-    public InputStream sendGetRequest(String fullFileName) {
-        InputStream stream = null;
+    public StringReader sendGetRequest(String fullFileName) {
+        StringReader stringReader = null;
         try {
             HttpURLConnection connection = null;
             URL serverURL = new URL("http://localhost:8080/Restaurant");
             connection = (HttpURLConnection) serverURL.openConnection();
+            connection.setRequestProperty("Content-Type", "text/xml");
 
-            connection.setDoInput(true);
             connection.setDoOutput(true);
             connection.setRequestMethod("POST");
 
@@ -117,46 +123,53 @@ public class clientStartup {
             writer.write(message);
             writer.flush();
 
-            stream = connection.getInputStream();
+            BufferedReader responseReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String response = "";
+            String responseLine = "";
+            while((responseLine = responseReader.readLine()) != null){
+               response += responseLine;
+            }
+
+            stringReader = new StringReader(response);
+
+            connection.getInputStream().close();
+            connection.disconnect();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return stream;
+        return stringReader;
     }
 
-    public InputStream sendRequest(InputStream streamToSend) {
-        InputStream stream = null;
+    public StringReader sendRequest(String stringToSend) {
+        StringReader stringReader = null;
         try {
             HttpURLConnection connection = null;
             URL serverURL = new URL("http://localhost:8080/Restaurant");
             connection = (HttpURLConnection) serverURL.openConnection();
+            connection.setRequestProperty("Content-Type", "text/xml");
 
             connection.setDoInput(true);
             connection.setDoOutput(true);
             connection.setRequestMethod("POST");
             PrintWriter writer = new PrintWriter(connection.getOutputStream());
-            writer.write(readInputStreamToString(streamToSend));
+            writer.write(stringToSend);
             writer.flush();
-            stream = connection.getInputStream();
+
+            BufferedReader responseReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String response = "";
+            String responseLine = "";
+            while((responseLine = responseReader.readLine()) != null){
+                response += responseLine;
+            }
+
+            stringReader = new StringReader(response);
+            connection.getInputStream().close();
+            connection.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return stream;
-    }
-
-    public String readInputStreamToString(InputStream stream) {
-        String response = "";
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(stream));
-            String brLine = br.readLine();
-            while (brLine != null) {
-                response += brLine;
-                brLine = br.readLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-        return response;
+        return stringReader;
     }
 
     public static void main(String[] args) {

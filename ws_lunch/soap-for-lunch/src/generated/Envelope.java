@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.*;
     "body"
 })
 @XmlRootElement(name = "Envelope", namespace = "http://www.w3.org/2001/12/soap-envelope")
-public class Envelope {
+public class Envelope implements IEnvelope {
 
     @XmlElement(name = "Body", namespace = "http://www.w3.org/2001/12/soap-envelope", required = true)
     protected Body body;
@@ -47,6 +47,7 @@ public class Envelope {
      *     {@link generated.GetRestaurantMenu.Body }
      *
      */
+    @Override
     public Body getBody() {
         return body;
     }
@@ -59,6 +60,7 @@ public class Envelope {
      *     {@link generated.GetRestaurantMenu.Body }
      *     
      */
+    @Override
     public void setBody(Body value) {
         this.body = value;
     }
@@ -71,6 +73,7 @@ public class Envelope {
      *     {@link String }
      *     
      */
+    @Override
     public String getEncodingStyle() {
         return encodingStyle;
     }
@@ -83,6 +86,7 @@ public class Envelope {
      *     {@link String }
      *     
      */
+    @Override
     public void setEncodingStyle(String value) {
         this.encodingStyle = value;
     }

@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
     "body"
 })
 @XmlRootElement(name = "Envelope", namespace = "http://www.w3.org/2001/12/soap-envelope")
-public class Envelope {
+public class Envelope  {
 
     @XmlElement(name = "Body", namespace = "http://www.w3.org/2001/12/soap-envelope", required = true)
     protected Body body;
