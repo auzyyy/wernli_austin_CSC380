@@ -4,6 +4,7 @@ import generated.GetRestaurants.Envelope;
 
 import javax.servlet.annotation.WebServlet;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.BufferedReader;
@@ -30,7 +31,7 @@ public class SoapSocket extends javax.servlet.http.HttpServlet {
 
             JAXBContext context = JAXBContext.newInstance(generated.ObjectFactory.class);
             Unmarshaller unmarshaller = context.createUnmarshaller();
-            Object clientRequest = unmarshaller.unmarshal(br);
+            Object clientRequest = ((JAXBElement)unmarshaller.unmarshal(br)).getValue();
             String[] splitString = clientRequest.getClass().toString().split("\\.");
             System.out.println(clientRequest);
             String className = splitString[1];
@@ -53,7 +54,7 @@ public class SoapSocket extends javax.servlet.http.HttpServlet {
     }
 
     private void sendRestaurantsMenu(javax.servlet.http.HttpServletResponse response, Envelope envelope) throws IOException {
-        Scanner scan = new Scanner(this.getClass().getClassLoader().getResourceAsStream("restaurant-menu-soapp-response.xml"));
+        Scanner scan = new Scanner(this.getClass().getClassLoader().getResourceAsStream("/restaurant-restaurants-soap-response.xml"));
         String message = "";
         while (scan.hasNextLine()) {
             message += scan.nextLine();
