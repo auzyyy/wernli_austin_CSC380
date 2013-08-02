@@ -32,7 +32,14 @@ public class clientStartup {
         return response;
     }
 
-    public String getRestaurants() {
+    public String[] getRestaurants() {
+        String response = sendGetRequest("restaurant-restaurants-soap-request.xml");
+
+
+        return null;
+    }
+
+    public String sendGetRequest(String fullFileName){
         String response = "";
         try {
             HttpURLConnection connection = null;
@@ -44,7 +51,7 @@ public class clientStartup {
             connection.setRequestMethod("POST");
 
             PrintWriter writer = new PrintWriter(connection.getOutputStream());
-            BufferedReader fileReader = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("restaurant-restaurants-soap-request.xml")));
+            BufferedReader fileReader = new BufferedReader(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(fullFileName)));
             String readLine = fileReader.readLine();
             String message = "";
             while (readLine != null) {
@@ -64,7 +71,6 @@ public class clientStartup {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return response;
     }
 
