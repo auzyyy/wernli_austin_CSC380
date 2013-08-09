@@ -1,12 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd47f4d2-38b5-41ab-a49c-bd4e4484218d" name="Default" comment="" />
+    <list default="true" id="dd47f4d2-38b5-41ab-a49c-bd4e4484218d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/.name" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/generated/client/AddZipCode.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/generated/client/AddZipCodeResponse.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/libraries/CXF_Runtime.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/generated/client/GetState.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/generated/client/GetStateResponse.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/generated/client/ObjectFactory.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/generated/client/State.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/service/State.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/generated/client/ZipCodeService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/generated/client/ZipCodeService.wsdl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/generated/client/ZipCodeService_ZipCodeWebServiceImplPort_Client.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/servlet/ZipCodeServlet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/generated/client/ZipCodeWebService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/service/ZipCodeWebService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/service/ZipCodeWebService.wsdl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/service/ZipCodeWebServiceImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/libraries/antlr_2_7_7.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/web/WEB-INF/cxf-servlet.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/encodings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/web/index.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/jax_ws_exercise.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/artifacts/jax_ws_exercise_war_exploded.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/src/generated/client/package-info.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/copyright/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/scopes/scope_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/web/WEB-INF/web.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../ws_lunch/jax_ws_exercise/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="C:\Users\awernli\Documents\GitHub\wernli_austin_CSC380\ws_lunch\soap-for-lunch\out\artifacts\soap_for_lunch_war_exploded\index.jsp" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/artifacts/soap_for_lunch_war_exploded/WEB-INF/classes/generated/Envelope.class" afterPath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/artifacts/soap_for_lunch_war_exploded/WEB-INF/classes/generated/Envelope.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/production/soap-for-lunch/generated/Envelope.class" afterPath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/production/soap-for-lunch/generated/Envelope.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/artifacts/soap_for_lunch_war_exploded/WEB-INF/classes/generated/ObjectFactory.class" afterPath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/artifacts/soap_for_lunch_war_exploded/WEB-INF/classes/generated/ObjectFactory.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/production/soap-for-lunch/generated/ObjectFactory.class" afterPath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/production/soap-for-lunch/generated/ObjectFactory.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/artifacts/soap_for_lunch_war_exploded/WEB-INF/classes/neumont/SoapSocket.class" afterPath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/artifacts/soap_for_lunch_war_exploded/WEB-INF/classes/neumont/SoapSocket.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/production/soap-for-lunch/neumont/SoapSocket.class" afterPath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/out/production/soap-for-lunch/neumont/SoapSocket.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Server/src/MathLogic.java" afterPath="$PROJECT_DIR$/Server/src/MathLogic.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../ws_lunch/soap-for-lunch/.idea/workspace.xml" />
+    </list>
     <ignored path="wernli.austin_firstDistSystem.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/MathLogic.java" changelist="dd47f4d2-38b5-41ab-a49c-bd4e4484218d" time="1374207567672" ignored="false" />
+    <file path="/MathLogic.java" changelist="dd47f4d2-38b5-41ab-a49c-bd4e4484218d" time="1375920597813" ignored="false" />
     <file path="/Startup.java" changelist="dd47f4d2-38b5-41ab-a49c-bd4e4484218d" time="1374221289350" ignored="false" />
-    <file path="/Dummy.txt" changelist="dd47f4d2-38b5-41ab-a49c-bd4e4484218d" time="1374536857084" ignored="false" />
+    <file path="/Dummy.txt" changelist="dd47f4d2-38b5-41ab-a49c-bd4e4484218d" time="1376005984914" ignored="false" />
     <file path="/UseableClasses.txt" changelist="dd47f4d2-38b5-41ab-a49c-bd4e4484218d" time="1373951950486" ignored="false" />
     <file path="/MyClass.java" changelist="dd47f4d2-38b5-41ab-a49c-bd4e4484218d" time="1374215490878" ignored="false" />
     <file path="/MyTest.java" changelist="dd47f4d2-38b5-41ab-a49c-bd4e4484218d" time="1374215534363" ignored="false" />
@@ -25,6 +69,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -92,23 +137,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/Server/src/Startup.java" line="208" class="Startup.ClientThread" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
     </line_breakpoints>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -117,7 +146,35 @@
     <favorites_list name="wernli.austin_firstDistSystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Startup.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Server/src/Startup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="247" column="0" selection-start="8161" selection-end="8161" vertical-scroll-proportion="0.032945737">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MathLogic.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Server/src/MathLogic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="17" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Startup.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ServerClient/src/Startup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="108" column="33" selection-start="3240" selection-end="3240" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -138,13 +195,13 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/Server/src/UseableClasses.txt" />
-        <option value="$PROJECT_DIR$/Server/src/MathLogic.java" />
         <option value="$PROJECT_DIR$/Server/src/MyClass.java" />
         <option value="$PROJECT_DIR$/Server/src/MyTest.java" />
         <option value="$PROJECT_DIR$/Server/src/MyParam.java" />
         <option value="$PROJECT_DIR$/Server/resources/UseableClasses.txt" />
         <option value="$PROJECT_DIR$/ServerClient/src/Startup.java" />
         <option value="$PROJECT_DIR$/Server/src/Startup.java" />
+        <option value="$PROJECT_DIR$/Server/src/MathLogic.java" />
       </list>
     </option>
   </component>
@@ -183,7 +240,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -194,6 +250,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -235,7 +292,7 @@
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Server" />
+      <module name="ServerClient" />
       <envs />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
@@ -451,7 +508,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3986637" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32444444" sideWeight="0.4530416" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39777777" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -461,7 +518,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13927428" sideWeight="0.6755555" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13927428" sideWeight="0.6022222" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32516703" sideWeight="0.5469584" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -592,47 +649,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/resources/UseableClasses.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="22" selection-start="17" selection-end="17" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/Startup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="178" column="78" selection-start="5718" selection-end="5718" vertical-scroll-proportion="0.3524775">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ServerClient/src/Startup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="51" selection-start="3520" selection-end="3520" vertical-scroll-proportion="0.6792453" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Server/src/MyClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="20" selection-start="169" selection-end="176" vertical-scroll-proportion="0.20446736">
-          <folding />
-        </state>
+        <state line="1" column="22" selection-start="17" selection-end="17" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/src/MyTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="5" selection-start="331" selection-end="331" vertical-scroll-proportion="0.49656358">
+        <state line="17" column="5" selection-start="331" selection-end="331" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/src/MyParam.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="69" selection-start="262" selection-end="262" vertical-scroll-proportion="0.4089347">
+        <state line="10" column="17" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/src/MyClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="20" selection-start="169" selection-end="176" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ServerClient/src/Startup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="108" column="33" selection-start="3240" selection-end="3240" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Server/src/MathLogic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="56" selection-start="320" selection-end="320" vertical-scroll-proportion="0.3797251">
+        <state line="22" column="17" selection-start="501" selection-end="501" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/src/Startup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="247" column="0" selection-start="8161" selection-end="8161" vertical-scroll-proportion="0.032945737">
           <folding />
         </state>
       </provider>

@@ -19,6 +19,10 @@ public class MathLogic {
         return answer;
     }
 
+    public String m(String s){
+        return s;
+    }
+
     public int add(int a, int b){
         return a+b;
     }

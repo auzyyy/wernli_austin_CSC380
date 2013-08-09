@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://localhost/LunchService" name="LunchService" targetNamespace="http://service/">
+  <wsdl:import location="http://localhost:8080/services/LunchService?wsdl=LunchService.wsdl" namespace="http://localhost/LunchService">
+    </wsdl:import>
+  <wsdl:binding name="LunchServiceSoapBinding" type="ns1:LunchService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addOrder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addOrder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addOrderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRestaurants">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRestaurants">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRestaurantsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMenu">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMenu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMenuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LunchService">
+    <wsdl:port binding="tns:LunchServiceSoapBinding" name="LunchServiceImplPort">
+      <soap:address location="http://localhost:8080/services/LunchService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
