@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ZipCodeWebServiceService" targetNamespace="http://service/" xmlns:ns1="http://localhost/ZipCodeService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://localhost/ZipCodeService" elementFormDefault="unqualified" targetNamespace="http://localhost/ZipCodeService" version="1.0">
+<xs:element name="addZipCode" type="tns:addZipCode"/>
+<xs:element name="addZipCodeResponse" type="tns:addZipCodeResponse"/>
+<xs:element name="getState" type="tns:getState"/>
+<xs:element name="getStateResponse" type="tns:getStateResponse"/>
+<xs:complexType name="addZipCode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="state" type="tns:state"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="zipCodes" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="state">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fullName" type="xs:string"/>
+      <xs:element minOccurs="0" name="twoDigitCode" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addZipCodeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="zipCode" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getStateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="State" type="tns:state"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getState">
+    <wsdl:part name="parameters" element="ns1:getState">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStateResponse">
+    <wsdl:part name="parameters" element="ns1:getStateResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addZipCodeResponse">
+    <wsdl:part name="parameters" element="ns1:addZipCodeResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addZipCode">
+    <wsdl:part name="parameters" element="ns1:addZipCode">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ZipCodeService">
+    <wsdl:operation name="addZipCode">
+      <wsdl:input name="addZipCode" message="ns1:addZipCode">
+    </wsdl:input>
+      <wsdl:output name="addZipCodeResponse" message="ns1:addZipCodeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getState">
+      <wsdl:input name="getState" message="ns1:getState">
+    </wsdl:input>
+      <wsdl:output name="getStateResponse" message="ns1:getStateResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ZipCodeWebServiceServiceSoapBinding" type="ns1:ZipCodeService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addZipCode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addZipCode">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addZipCodeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getState">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getState">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ZipCodeWebServiceService">
+    <wsdl:port name="ZipCodeServicePort" binding="ns1:ZipCodeWebServiceServiceSoapBinding">
+      <soap:address location="http://localhost:9090/ZipCodeServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://localhost/ZipCodeService" name="ZipCodeWebService" targetNamespace="http://service/">
+  <wsdl:import location="http://localhost:8080/jaxws/services/ZipCodeService?wsdl=ZipCodeService.wsdl" namespace="http://localhost/ZipCodeService">
+    </wsdl:import>
+  <wsdl:binding name="ZipCodeWebServiceSoapBinding" type="ns1:ZipCodeService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addZipCode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addZipCode">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addZipCodeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getState">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getState">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ZipCodeWebService">
+    <wsdl:port binding="tns:ZipCodeWebServiceSoapBinding" name="ZipCodeWebServiceImplPort">
+      <soap:address location="http://localhost:8080/jaxws/services/ZipCodeService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

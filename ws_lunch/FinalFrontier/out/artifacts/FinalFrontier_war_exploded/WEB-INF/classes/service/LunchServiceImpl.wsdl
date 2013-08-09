@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="LunchService" targetNamespace="http://service/" xmlns:ns1="http://localhost/LunchService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:import namespace="http://localhost/LunchService" location="LunchService.wsdl">
+    </wsdl:import>
+  <wsdl:binding name="LunchServiceSoapBinding" type="ns1:LunchService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="addOrder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addOrder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addOrderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRestaurants">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRestaurants">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRestaurantsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMenu">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMenu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMenuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LunchService">
+    <wsdl:port name="LunchServiceImplPort" binding="tns:LunchServiceSoapBinding">
+      <soap:address location="http://localhost:9090/LunchServiceImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

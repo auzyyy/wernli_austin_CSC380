@@ -1,0 +1,5 @@
+C:\Users\awernli\Documents\GitHub\wernli_austin_CSC380\ws_lunch\netFinal\FinalFrontier_net\FinalFrontier_net\bin\Debug\FinalFrontier_net.exe.config
+C:\Users\awernli\Documents\GitHub\wernli_austin_CSC380\ws_lunch\netFinal\FinalFrontier_net\FinalFrontier_net\bin\Debug\FinalFrontier_net.exe
+C:\Users\awernli\Documents\GitHub\wernli_austin_CSC380\ws_lunch\netFinal\FinalFrontier_net\FinalFrontier_net\bin\Debug\FinalFrontier_net.pdb
+C:\Users\awernli\Documents\GitHub\wernli_austin_CSC380\ws_lunch\netFinal\FinalFrontier_net\FinalFrontier_net\obj\x86\Debug\FinalFrontier_net.exe
+C:\Users\awernli\Documents\GitHub\wernli_austin_CSC380\ws_lunch\netFinal\FinalFrontier_net\FinalFrontier_net\obj\x86\Debug\FinalFrontier_net.pdb

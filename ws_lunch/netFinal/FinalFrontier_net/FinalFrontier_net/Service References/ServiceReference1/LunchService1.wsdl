@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://localhost/LunchService" name="LunchService" targetNamespace="http://localhost/LunchService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:tns="http://localhost/LunchService" elementFormDefault="unqualified" targetNamespace="http://localhost/LunchService" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="addOrder" type="tns:addOrder" />
+      <xs:element name="addOrderResponse" type="tns:addOrderResponse" />
+      <xs:element name="getMenu" type="tns:getMenu" />
+      <xs:element name="getMenuResponse" type="tns:getMenuResponse" />
+      <xs:element name="getRestaurants" type="tns:getRestaurants" />
+      <xs:element name="getRestaurantsResponse" type="tns:getRestaurantsResponse" />
+      <xs:complexType name="addOrder">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="restaurant" type="tns:restaurant" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="menuItems" type="tns:menuItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="restaurant">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="menu" type="tns:menu" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="menu">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="menuItems" nillable="true" type="tns:menuItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="menuItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="menuString" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addOrderResponse">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getRestaurants">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="getRestaurantsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="RestaurantList" type="tns:restaurant" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getMenu">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="restaurant" type="tns:restaurant" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getMenuResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MenuList" type="tns:menu" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getRestaurantsResponse">
+    <wsdl:part name="parameters" element="ns1:getRestaurantsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMenu">
+    <wsdl:part name="parameters" element="ns1:getMenu" />
+  </wsdl:message>
+  <wsdl:message name="addOrderResponse">
+    <wsdl:part name="parameters" element="ns1:addOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="getRestaurants">
+    <wsdl:part name="parameters" element="ns1:getRestaurants" />
+  </wsdl:message>
+  <wsdl:message name="getMenuResponse">
+    <wsdl:part name="parameters" element="ns1:getMenuResponse" />
+  </wsdl:message>
+  <wsdl:message name="addOrder">
+    <wsdl:part name="parameters" element="ns1:addOrder" />
+  </wsdl:message>
+  <wsdl:portType name="LunchService">
+    <wsdl:operation name="addOrder">
+      <wsdl:input name="addOrder" message="ns1:addOrder" />
+      <wsdl:output name="addOrderResponse" message="ns1:addOrderResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getRestaurants">
+      <wsdl:input name="getRestaurants" message="ns1:getRestaurants" />
+      <wsdl:output name="getRestaurantsResponse" message="ns1:getRestaurantsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getMenu">
+      <wsdl:input name="getMenu" message="ns1:getMenu" />
+      <wsdl:output name="getMenuResponse" message="ns1:getMenuResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
